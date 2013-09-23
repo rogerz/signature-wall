@@ -1,0 +1,17 @@
+<div id="side-bar" class="inactive">
+  <ul id="sb-hot-zone">
+    <li>
+      <a id="sb-toggle">
+        <i class="glyphicon glyphicon-cog"></i>
+      </a>
+    </li>
+  </ul>
+  <ul id="sb-tabs">
+    <li ng-repeat="panel in panels">
+      <a ng-click="switchTo($index)">
+        <i class="glyphicon {{panel.glyphicon || 'glyphicon-cog'}}"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+<div ng-include="template"></div>
