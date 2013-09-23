@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('swallApp', [])
+angular.module('swallApp', ['ngRoute'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
