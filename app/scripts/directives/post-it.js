@@ -4,7 +4,7 @@ angular.module('swallApp')
   .directive('postItWall', function () {
     var postIt;
 
-    function controller($scope) {
+    function controller($scope, ControlPanel) {
       var generateId = (function () {
         var id = 0;
         return function () {
@@ -42,7 +42,7 @@ angular.module('swallApp')
       };
 
       $scope.postIt = postIt;
-      $scope.cp.add('post it', 'glyphicon-th', 'views/post-it-panel.html',
+      ControlPanel.add('post it', 'glyphicon-th', 'views/post-it-panel.html',
                     postIt, 'postIt');
     }
 

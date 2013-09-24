@@ -8,8 +8,8 @@
   </ul>
   <ul id="sb-tabs">
     <li ng-repeat="panel in panels">
-      <a ng-click="switchTo($index)">
-        <i class="glyphicon {{panel.glyphicon || 'glyphicon-cog'}}"></i>
+      <a ng-click="activate($index)">
+        <i class="glyphicon {{panel.iconClass || 'glyphicon-cog'}}"></i>
       </a>
     </li>
   </ul>
