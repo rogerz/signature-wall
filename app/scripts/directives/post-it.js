@@ -29,7 +29,7 @@ angular.module('swallApp')
 
       function add(one) {
         one.id = generateId();
-        one.style = $scope.api.genStyle(one.id);
+        one.style = $scope.genStyle(one.id);
         postIt.list.push(one);
       }
 
@@ -92,30 +92,30 @@ angular.module('swallApp')
         cols: attrs.cols
       };
 
-      scope.api.genStyle = genStyle;
+      scope.genStyle = genStyle;
     }
 
     return {
-      scope: {cp: '=', api: '='},
       controller: controller,
       restrict: 'E',
-      link: postLink
+      link: postLink,
+      templateUrl: 'views/post-it-wall-tpl.html'
     };
   })
   .animation('.post-it-item', function () {
 
     function enter(element, done) {
       /* global jQuery:false */
-      var scope = angular.element(element).scope();
-      var styles = scope.api.genStyles(jQuery(element).attr('post-it-id'));
-      jQuery(element).css({
+      var scope = element.scope();
+      var styles = scope.genStyle(element.attr('post-it-id'));
+      element.css({
         opacity: 0,
         left: 0,
         top: 0,
         width: '100%',
         height: '100%'
       });
-      jQuery(element).animate({
+      element.animate({
         opacity: 1,
         top: styles.top,
         left: styles.left,
@@ -124,13 +124,13 @@ angular.module('swallApp')
       }, done);
       return function (cancelled) {
         if (cancelled) {
-          jQuery(element).stop();
+          element.stop();
         }
       };
     }
 
     function leave(element, done) {
-      jQuery(element).animate({
+      element.animate({
         opacity: 0
       }, done);
     }

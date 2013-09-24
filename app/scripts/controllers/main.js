@@ -7,6 +7,4 @@ angular.module('swallApp')
       'AngularJS',
       'Karma'
     ];
-    $scope.controlPanel = {};// exported API from control panel
-    $scope.postItWall = {};
   });

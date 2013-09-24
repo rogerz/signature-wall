@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('swallApp', ['ngRoute'])
+angular.module('swallApp', ['ngRoute', 'ngAnimate'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
