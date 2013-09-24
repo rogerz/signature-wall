@@ -5,7 +5,9 @@ angular.module('swallApp')
 
     function controller($scope, ControlPanel) {
       var oldParam;
+
       $scope.panels = ControlPanel.all();
+
       $scope.activate = function (index) {
         var activeOne = ControlPanel.activate(index);
 
@@ -16,6 +18,12 @@ angular.module('swallApp')
           delete $scope[oldParam];
           oldParam = activeOne.paramAs;
         }
+      };
+
+      $scope.inactive = true;
+
+      $scope.toggle = function () {
+        $scope.inactive = !$scope.inactive;
       };
     }
 
