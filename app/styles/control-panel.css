@@ -49,6 +49,13 @@
   opacity: 0;
 }
 
-#side-bar.inactive:hover{
+#side-bar.inactive:hover {
   opacity: 0.9;  
+}
+
+#control-panel {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  padding: 2px;
 }

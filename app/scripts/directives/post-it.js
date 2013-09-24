@@ -34,7 +34,7 @@ angular.module('swallApp')
       }
 
       postIt = {
-        newOne: {},
+        newOne: {src: 'http://china.nba.com/media/teamLogos/medium/BKN.png'},
         list: [],
         submit: submit,
         remove: remove,

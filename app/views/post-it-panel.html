@@ -1,11 +1,9 @@
-<form ng-submit="postIt.submit()">
-  <img class="post-it-preview" ng-src="{{postIt.newOne.src}}" alt="invalid"></img>
-  <input ng-model="postIt.newOne.src" autofocus></input>
-</form>
+<img class="post-it-preview" ng-src="{{postIt.newOne.src}}" alt="invalid"></img>
+<input ng-model="postIt.newOne.src" autofocus></input><button ng-click="postIt.submit()">+</button>
 <ul>
   <li ng-repeat="p in postIt.list">
     <img class="post-it-preview" ng-src="{{p.src}}"></img>
     <label>{{p.src}}</label>
-    <button ng-click="postIt.remove($index)">Remove</button>
+    <button ng-click="postIt.remove($index)">-</button>
   </li>
 </ul>
