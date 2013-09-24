@@ -9,9 +9,11 @@
   <ul id="sb-tabs">
     <li ng-repeat="panel in panels">
       <a ng-click="activate($index)">
-        <i class="glyphicon {{panel.iconClass || 'glyphicon-cog'}}"></i>
+        <ni class="glyphicon {{panel.iconClass || 'glyphicon-cog'}}"></i>
       </a>
     </li>
   </ul>
 </div>
-<div id="control-panel" ng-include="template"></div>
+<div id="control-panel" ng-hide="inactive">
+  <ng-include src="template"></ng-include>
+</div>

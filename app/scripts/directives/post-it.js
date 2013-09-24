@@ -5,50 +5,15 @@ angular.module('swallApp')
     var postIt;
 
     function controller($scope, ControlPanel) {
-      var generateId = (function () {
-        var id = 0;
-        return function () {
-          var newId = id;
-          id = id + 1;
-          return newId;
-        };
-      })();
-
-      function submit() {
-        var src = postIt.newOne.src.trim();
-        if (src.length) {
-          postIt.add({
-            src: src
-          });
-        }
-      }
-
-      function remove(index) {
-        postIt.list.splice(index, 1);
-      }
-
-      function add(one) {
-        one.id = generateId();
-        one.style = $scope.genStyle(one.id);
-        postIt.list.push(one);
-      }
-
-      postIt = {
-        newOne: {src: 'http://china.nba.com/media/teamLogos/medium/BKN.png'},
-        list: [],
-        submit: submit,
-        remove: remove,
-        add: add
+      // configurable optiosn
+      var opts = $scope.opts  = {
+        rows: 4,
+        cols: 4,
+        capacity: 0.25
       };
 
-      $scope.postIt = postIt;
-      ControlPanel.add('post it', 'glyphicon-th', 'views/post-it-panel.html',
-                    postIt, 'postIt');
-    }
-
-    function postLink(scope, element, attrs) {
-
-      var gridPos = (function (rows, cols) {
+      // generate styles from post-it ID
+      var gridPosFn = function (rows, cols) {
         var slots = [],
         i, j;
         for (i = 0; i < rows; i++) {
@@ -74,31 +39,62 @@ angular.module('swallApp')
         return function (index) {
           return slots[index % (rows * cols)];
         };
-      })(attrs.rows, attrs.cols);
-
-      function genStyle(id) {
-        return gridPos(id);
       }
 
-        // calculate maximum post-it allowed
-      var capacity = attrs.capacity || 1.0;
-      if (capacity[capacity.length - 1] === '%') {
-        capacity = capacity.substr(0, capacity.length - 1) / 100;
+      var genStyle = $scope.genStyle = gridPosFn(opts.rows, opts.cols);
+
+      // post-it list manipulation
+      var generateId = (function () {
+        var id = 0;
+        return function () {
+          var newId = id;
+          id = id + 1;
+          return newId;
+        };
+      })();
+
+      function submit() {
+        var src = postIt.newOne.src.trim();
+        if (src.length) {
+          postIt.add({
+            src: src
+          });
+        }
       }
 
-      scope.opts = {
-        capacity: capacity,
-        rows: attrs.rows,
-        cols: attrs.cols
+      function remove(index) {
+        postIt.list.splice(index, 1);
+      }
+
+      function add(one) {
+        var length = postIt.list.length,
+            max = opts.rows * opts.cols * opts.capacity;
+
+        one.id = generateId();
+        one.style = $scope.genStyle(one.id);
+        if (length >= max) {
+          postIt.list.splice(max - 1, length - max + 1);
+        }
+        postIt.list.unshift(one);
+      }
+
+      postIt = {
+        newOne: {src: 'http://china.nba.com/media/teamLogos/medium/BKN.png'},
+        list: [],
+        submit: submit,
+        remove: remove,
+        add: add,
+        opts: $scope.opts
       };
 
-      scope.genStyle = genStyle;
+      $scope.postIt = postIt;
+      ControlPanel.add('post it', 'glyphicon-th', 'views/post-it-panel.html',
+                    postIt, 'postIt');
     }
 
     return {
       controller: controller,
       restrict: 'E',
-      link: postLink,
       templateUrl: 'views/post-it-wall-tpl.html'
     };
   })
