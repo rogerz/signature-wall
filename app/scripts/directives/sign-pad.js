@@ -1,10 +1,18 @@
 'use strict';
 
 angular.module('swallApp')
-  .directive('signPad', function ($window, ControlPanel) {
+  .directive('signPad', function ($window, $timeout, ControlPanel) {
     function controller($scope) {
       $scope.preview = {};
-      $scope.pad = {};
+
+      var delay = 1000, q;
+
+      $scope.endFn = function () {
+        $timeout.cancel(q);
+        q = $timeout(function () {
+          $scope.preview.update();
+        }, delay);
+      };
 
       function Param(name, value, min, max, step, label) {
         this.name = name;
@@ -35,9 +43,13 @@ angular.module('swallApp')
       restrict: 'E',
       link: function (scope, elem) {
         var canvas = elem.find('canvas')[0];
+        var timeout;
 
         /* global SignaturePad:false */
-        var signPad = new SignaturePad(canvas);
+        var signPad = new SignaturePad(canvas, {
+          startFn: scope.startFn,
+          endFn: scope.endFn
+        });
 
         // https://github.com/szimek/signature_pad/blob/gh-pages/js/app.js
         //
@@ -54,10 +66,23 @@ angular.module('swallApp')
         $window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        // proxy of SignaturePad methods;
-        scope.preview.confirm = function () {console.log('signature confirmed');};
-        scope.preview.back = function () {console.log('back to signature');};
-        scope.preview.clear = function () {signPad.clear();};
+        scope.preview.update = function () {
+          scope.preview.src = signPad.toDataURL();
+          scope.preview.show = true;
+        };
+
+        scope.preview.confirm = function () {
+          console.log('signature confirmed');
+        };
+
+        scope.preview.close = function () {
+          scope.preview.show = false;
+        };
+
+        scope.preview.clear = function () {
+          signPad.clear();
+          scope.preview.close();
+        };
 
         scope.vals = {};
 

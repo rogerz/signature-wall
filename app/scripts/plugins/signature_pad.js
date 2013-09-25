@@ -30,7 +30,9 @@ var SignaturePad = (function (document) {
             dotSize: function () {
                 return (this.opts.minWidth + this.opts.maxWidth) / 2;
             },
-            record: true
+            record: true,
+            startFn: undefined,  // callback when stroke start
+            endFn: undefined  // callback when stroke end
         };
         this.config(opts);
 
@@ -233,6 +235,7 @@ var SignaturePad = (function (document) {
             this._resetRecords();
             this._recording = true;
         }
+        this.opts.startFn && this.opts.startFn();
         this._reset();
         this._strokeFromEvent(event);
     };
@@ -246,6 +249,7 @@ var SignaturePad = (function (document) {
         var canDrawCurve = this.points.length > 2,
             point = this.points[0];
 
+        this.opts.endFn && this.opts.endFn();
         if (!canDrawCurve && point) {
             this._addDot(point);
         }
