@@ -4,17 +4,14 @@ angular.module('swallApp')
   .directive('controlPanel', function () {
 
     function controller($scope, ControlPanel) {
-      var oldCtx;
-
       $scope.panels = ControlPanel.all();
 
       $scope.activate = function (index) {
-        var activeOne = ControlPanel.activate(index),
-            ctx = activeOne.ctx;
+        var activeOne = ControlPanel.activate(index);
 
         $scope.template = activeOne.template;
         $scope.ctx = activeOne.ctx;
-      }
+      };
 
       $scope.inactive = true;
 

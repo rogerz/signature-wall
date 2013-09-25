@@ -39,9 +39,9 @@ angular.module('swallApp')
         return function (index) {
           return slots[index % (rows * cols)];
         };
-      }
+      };
 
-      var genStyle = $scope.genStyle = gridPosFn(opts.rows, opts.cols);
+      $scope.genStyle = gridPosFn(opts.rows, opts.cols);
 
       // post-it list manipulation
       var generateId = (function () {
@@ -90,7 +90,6 @@ angular.module('swallApp')
   .animation('.post-it-item', function () {
 
     function enter(element, done) {
-      /* global jQuery:false */
       var scope = element.scope();
       var styles = scope.genStyle(element.attr('post-it-id'));
       element.css({

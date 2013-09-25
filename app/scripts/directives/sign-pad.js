@@ -17,7 +17,7 @@ angular.module('swallApp')
 
       $scope.submit = function (one) {
         DataStore.add(one);
-      }
+      };
 
       // control panel
       function Param(name, value, min, max, step, label) {
@@ -49,7 +49,6 @@ angular.module('swallApp')
       restrict: 'E',
       link: function (scope, elem) {
         var canvas = elem.find('canvas')[0];
-        var timeout;
 
         /* global SignaturePad:false */
         var signPad = new SignaturePad(canvas, {
@@ -100,7 +99,7 @@ angular.module('swallApp')
           var vals = scope.vals = {};
           for (var i = 0; i < params.length; i++) {
             var param = params[i];
-            vals[param.name] = parseInt(param.value);
+            vals[param.name] = parseInt(param.value, 10);
           }
           if (vals.min > vals.max) {
             /* swap value */

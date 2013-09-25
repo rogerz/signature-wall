@@ -9,7 +9,6 @@ angular.module('swallApp')
       if (one) {
         signList.unshift(one);
       }
-      return this;
     }
 
     return {
