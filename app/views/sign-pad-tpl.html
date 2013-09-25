@@ -3,7 +3,7 @@
 </div>
 <div id="sign-pad-preview" ng-show="preview.show">
   <img ng-src="{{preview.src}}" width="100px"></img>
-  <button ng-click="preview.confirm()">confirm</button>
-  <button ng-click="preview.clear()">clear</button>
-  <button ng-click="preview.close()">close</button>
+  <button ng-click="preview.confirm();$event.stopPropagation()">confirm</button>
+  <button ng-click="preview.clear();$event.stopPropagation()">clear</button>
+  <button ng-click="preview.close();$event.stopPropagation()">close</button>
 </div>

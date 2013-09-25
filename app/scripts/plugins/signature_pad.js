@@ -60,8 +60,8 @@ var SignaturePad = (function (document) {
         document.addEventListener("mouseup", function (event) {
             if (event.which === 1 && self._mouseButtonDown) {
                 self._mouseButtonDown = false;
+                self._strokeEnd();
             }
-            self._strokeEnd();
         });
 
         // Handle touch events
