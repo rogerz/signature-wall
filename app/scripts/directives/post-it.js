@@ -4,7 +4,7 @@ angular.module('swallApp')
   .directive('postItWall', function () {
     var postIt;
 
-    function controller($scope, ControlPanel) {
+    function controller($scope, ControlPanel, DataStore) {
       // configurable optiosn
       var opts = $scope.opts  = {
         rows: 16,
@@ -53,15 +53,6 @@ angular.module('swallApp')
         };
       })();
 
-      function submit() {
-        var src = postIt.newOne.src.trim();
-        if (src.length) {
-          postIt.add({
-            src: src
-          });
-        }
-      }
-
       function remove(index) {
         postIt.list.splice(index, 1);
       }
@@ -79,9 +70,7 @@ angular.module('swallApp')
       }
 
       postIt = {
-        newOne: {src: 'http://china.nba.com/media/teamLogos/medium/BKN.png'},
-        list: [],
-        submit: submit,
+        list: DataStore.signList,
         remove: remove,
         add: add,
         opts: $scope.opts

@@ -2,7 +2,8 @@
 
 angular.module('swallApp')
   .directive('signPad', function ($window, $timeout, ControlPanel) {
-    function controller($scope) {
+    function controller($scope, DataStore) {
+      // preview
       $scope.preview = {};
 
       var delay = 1000, q;
@@ -14,6 +15,11 @@ angular.module('swallApp')
         }, delay);
       };
 
+      $scope.submit = function (one) {
+        DataStore.add(one);
+      }
+
+      // control panel
       function Param(name, value, min, max, step, label) {
         this.name = name;
         this.value = value;
@@ -72,7 +78,10 @@ angular.module('swallApp')
         };
 
         scope.preview.confirm = function () {
-          console.log('signature confirmed');
+          scope.submit({
+            src: scope.preview.src
+          });
+          scope.preview.clear();
         };
 
         scope.preview.close = function () {
