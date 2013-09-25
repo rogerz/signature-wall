@@ -14,13 +14,12 @@ angular.module('swallApp')
       return activeOne;
     }
 
-    function add(name, icon, tpl, params, paramAs) {
+    function add(name, icon, tpl, ctx) {
       panels.push({
         name: name,
         iconClass: icon,
         template: tpl,
-        params: params || {},
-        paramAs: paramAs || 'params',
+        ctx: ctx,
         active: false
       });
     }

@@ -89,7 +89,7 @@ angular.module('swallApp')
 
       $scope.postIt = postIt;
       ControlPanel.add('post it', 'glyphicon-th', 'views/post-it-panel.html',
-                    postIt, 'postIt');
+                    postIt);
     }
 
     return {
