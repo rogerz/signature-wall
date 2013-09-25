@@ -7,8 +7,8 @@ angular.module('swallApp')
     function controller($scope, ControlPanel) {
       // configurable optiosn
       var opts = $scope.opts  = {
-        rows: 4,
-        cols: 4,
+        rows: 16,
+        cols: 9,
         capacity: 0.25
       };
 
