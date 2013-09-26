@@ -1,6 +1,7 @@
-<ul>
-  <li ng-repeat="p in ctx.list">
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="p in ctx.list | limitTo:10">
+    <label>{{p.id}}</label>
     <img class="post-it-preview" ng-src="{{p.src}}" height="20px"></img>
-    <button ng-click="ctx.remove($index)">-</button>
+    <a class="glyphicon glyphicon-trash btn btn-danger" ng-click="ctx.remove($index)" />
   </li>
 </ul>
