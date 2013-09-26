@@ -6,17 +6,28 @@ angular.module('swallApp')
       // preview
       $scope.preview = {};
 
-      var delay = 1000, q;
-
-      $scope.endFn = function () {
-        $timeout.cancel(q);
-        q = $timeout(function () {
-          $scope.preview.update();
-        }, delay);
-      };
-
       $scope.submit = function (one) {
         DataStore.add(one);
+      };
+
+      $scope.preview.update = function (data) {
+        $scope.preview.src = data;
+      };
+
+      $scope.preview.confirm = function () {
+        $scope.submit({
+          src: $scope.preview.src
+        });
+        $scope.preview.hide();
+        $scope.clearPad();
+      };
+
+      $scope.preview.show = function () {
+        $scope.preview.display = true;
+      };
+
+      $scope.preview.hide = function () {
+        $scope.preview.display = false;
       };
 
       // control panel
@@ -50,10 +61,27 @@ angular.module('swallApp')
       link: function (scope, elem) {
         var canvas = elem.find('canvas')[0];
 
+        var delay = 300, q;
+
+        var startFn = function () {
+          $timeout.cancel(q);
+          scope.$apply(function () {
+            scope.preview.hide();
+          });
+        };
+
+        var endFn = function () {
+          $timeout.cancel(q);
+          q = $timeout(function () {
+            scope.updatePreview();
+            scope.preview.show();
+          }, delay);
+        };
+
         /* global SignaturePad:false */
         var signPad = new SignaturePad(canvas, {
-          startFn: scope.startFn,
-          endFn: scope.endFn
+          startFn: startFn,
+          endFn: endFn
         });
 
         // https://github.com/szimek/signature_pad/blob/gh-pages/js/app.js
@@ -71,25 +99,12 @@ angular.module('swallApp')
         $window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        scope.preview.update = function () {
-          scope.preview.src = signPad.toDataURL();
-          scope.preview.show = true;
+        scope.updatePreview = function () {
+          scope.preview.update(signPad.toDataURL());
         };
 
-        scope.preview.confirm = function () {
-          scope.submit({
-            src: scope.preview.src
-          });
-          scope.preview.clear();
-        };
-
-        scope.preview.close = function () {
-          scope.preview.show = false;
-        };
-
-        scope.preview.clear = function () {
+        scope.clearPad = function () {
           signPad.clear();
-          scope.preview.close();
         };
 
         scope.vals = {};
