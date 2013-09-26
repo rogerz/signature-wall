@@ -12,6 +12,10 @@ angular.module('swallApp')
         capacity: 0.25
       };
 
+      $scope.$watch(['opts.row', 'opts.cols', 'opts.capacity'], function () {
+        opts.limit = opts.rows * opts.cols * opts.capacity;
+      });
+
       // generate styles from post-it ID
       var gridPosFn = function (rows, cols) {
         var slots = [],
@@ -44,29 +48,13 @@ angular.module('swallApp')
       $scope.genStyle = gridPosFn(opts.rows, opts.cols);
 
       // post-it list manipulation
-      var generateId = (function () {
-        var id = 0;
-        return function () {
-          var newId = id;
-          id = id + 1;
-          return newId;
-        };
-      })();
 
       function remove(index) {
-        postIt.list.splice(index, 1);
+        DataStore.remove(index);
       }
 
       function add(one) {
-        var length = postIt.list.length,
-            max = opts.rows * opts.cols * opts.capacity;
-
-        one.id = generateId();
-        one.style = $scope.genStyle(one.id);
-        if (length >= max) {
-          postIt.list.splice(max - 1, length - max + 1);
-        }
-        postIt.list.unshift(one);
+        DataStore.add(one);
       }
 
       postIt = {
