@@ -70,7 +70,7 @@ angular.module('swallApp')
     }
 
     return {
-      controller: controller,
+      controller: ['$scope', 'ControlPanel', 'DataStore', controller],
       restrict: 'E',
       templateUrl: 'views/post-it-wall-tpl.html'
     };

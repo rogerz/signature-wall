@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('swallApp')
-  .directive('signPad', function ($window, $timeout, ControlPanel) {
+  .directive('signPad', ['$window', '$timeout', 'ControlPanel', function ($window, $timeout, ControlPanel) {
     function controller($scope, DataStore) {
       // preview
       $scope.preview = {};
@@ -54,7 +54,7 @@ angular.module('swallApp')
     }
 
     return {
-      controller: controller,
+      controller: ['$scope', 'DataStore', controller],
       scope: {},
       templateUrl: 'views/sign-pad-tpl.html',
       restrict: 'E',
@@ -136,4 +136,4 @@ angular.module('swallApp')
         }
       }
     };
-  });
+  }]);

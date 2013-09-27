@@ -2,7 +2,6 @@
 
 angular.module('swallApp')
   .factory('DataStore', function () {
-    // TODO: use $resource
     var signList = [];
 
     var generateId = (function () {
