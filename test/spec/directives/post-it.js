@@ -15,6 +15,6 @@ describe('Directive: postIt', function () {
   it('should make hidden element visible', inject(function ($compile) {
     element = angular.element('<post-it></post-it>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the postIt directive');
+    expect(element.text()).toBe('');
   }));
 });

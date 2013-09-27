@@ -3,7 +3,7 @@
 describe('Service: ControlPanel', function () {
 
   // load the service's module
-  beforeEach(module('SwallApp'));
+  beforeEach(module('swallApp'));
 
   // instantiate service
   var ControlPanel;

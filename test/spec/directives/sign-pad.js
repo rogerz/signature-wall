@@ -15,6 +15,6 @@ describe('Directive: signPad', function () {
   it('should make hidden element visible', inject(function ($compile) {
     element = angular.element('<sign-pad></sign-pad>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the signPad directive');
+    expect(element.text()).toBe('');
   }));
 });
