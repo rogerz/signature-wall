@@ -1,0 +1,20 @@
+<div id="sign-pad-panel">
+  <div id="sign-pad-params">
+    <div ng-repeat="param in ctx.params">
+      <label>{{param.label}}</label>
+      <input type="range" class="sign-pad-param" ng-model="param.value" min="{{param.min}}" max="{{param.max}}" step="{{param.step}}">
+        
+    </div>
+  </div>
+  <div>
+    <div style="width:{{ctx.vals.min*2}}px; height:{{ctx.vals.min*2}}px;
+                border-radius:{{ctx.vals.min}}px;
+                background:rgb({{ctx.vals.red}},{{ctx.vals.green}},{{ctx.vals.blue}})">
+    </div>
+    <div style="width:{{ctx.vals.smooth/2}}%"></div>
+    <div style="width:{{ctx.vals.max*2}}px; height:{{ctx.vals.max*2}}px;
+                border-radius:{{ctx.vals.max}}px;
+                background:rgb({{ctx.vals.red}},{{ctx.vals.green}},{{ctx.vals.blue}})">
+    </div>
+  </div>
+</div>
