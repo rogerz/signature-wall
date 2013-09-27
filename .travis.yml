@@ -1,7 +1,10 @@
 language: node_js
+install:
 node_js:
-  - '0.8'
   - '0.10'
 before_script:
-  - 'npm install -g bower grunt-cli'
-  - 'bower install'
+  - sudo echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' > /etc/apt/sources.list.d/google-chrome.list
+  - sudo apt-get update
+  - sudo apt-get install google-chrome-stable
+  - npm install -g bower grunt-cli
+  - bower install
