@@ -7,4 +7,7 @@ angular.module('swallApp')
       'AngularJS',
       'Karma'
     ];
+    $scope.options = {
+      videoInBg: true
+    };
   }]);
