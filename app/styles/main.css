@@ -34,10 +34,15 @@ post-it-wall {
 }
 
 sign-pad {
-  z-index: 0
+  z-index: 0;
 }
 
-.control-panel {
+video-bg {
+  z-index: 5;
+}
+
+div[control-panel] {
+  position: fixed;
   z-index: 10;
 }
 

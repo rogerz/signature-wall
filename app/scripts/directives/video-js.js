@@ -33,6 +33,8 @@ angular.module('swallApp')
         vjs.on('play', function () {
           scope.$apply(function () {
             scope.bg = true;
+            // force hiding control bar
+            controlBar.attr('style', 'display:none!important');
           });
         });
         scope.opts = opts;
