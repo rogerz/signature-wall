@@ -1,11 +1,7 @@
 <ul class="list-group">
   <li class="list-group-item">
-    <input type="range" min="4" max="16" step="1" ng-model="ctx.opts.cols"></input>
-    <label>{{ctx.opts.cols}} cols</label>
-  </li>
-  <li class="list-group-item">
-    <input type="range" min="3" max="9" step="1" ng-model="ctx.opts.rows"></input>
-    <label>{{ctx.opts.rows}} rows</label>
+    <input type="range" min="4" max="16" step="1" ng-model="ctx.opts.grid"></input>
+    <label>{{ctx.opts.grid}} &times; {{ctx.opts.grid}}</label>
   </li>
   <li class="list-group-item">
     <input type="range" min="10" max="100" step="5" ng-model="ctx.opts.percent"></input>

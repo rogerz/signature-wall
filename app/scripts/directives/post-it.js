@@ -7,14 +7,13 @@ angular.module('swallApp')
     function controller($scope, ControlPanel, DataStore) {
       // configurable optiosn
       var opts = $scope.opts  = {
-        cols: 16,
-        rows: 9,
+        grid: 6,
         percent: 25
       };
 
       $scope.$watchCollection('opts', function () {
-        $scope.limit = opts.rows * opts.cols * opts.percent / 100;
-        $scope.genStyle = gridPosFn(opts.rows, opts.cols);
+        $scope.limit = opts.grid * opts.grid * opts.percent / 100;
+        $scope.genStyle = gridPosFn(opts.grid, opts.grid);
       });
 
       // generate styles from post-it ID
