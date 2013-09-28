@@ -11,13 +11,6 @@
   z-index: 10;
 }
 
-#sign-pad-btns {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 10px;
-}
-
 #sign-pad-panel {
   position: absolute;
   top: 40px;

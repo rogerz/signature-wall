@@ -30,27 +30,12 @@ angular.module('swallApp')
         $scope.preview.display = false;
       };
 
-      // control panel
-      function Param(name, value, min, max, step, label) {
-        this.name = name;
-        this.value = value;
-        this.min = min;
-        this.max = max;
-        this.step = step;
-        this.label = label;
-      }
-
-      $scope.params = [
-        new Param('min', 10, 5, 20, 1, 'width'),
-        new Param('max', 15, 5, 20, 1, 'width'),
-        new Param('red', 90, 0, 255, 1, 'red'),
-        new Param('green', 90, 0, 255, 1, 'green'),
-        new Param('blue', 90, 0, 255, 1, 'blue'),
-        new Param('smooth', 70, 0, 100, 1, 'smooth')
-      ];
-
+      $scope.opts = {
+        color: 'black',
+        size: 15
+      };
       ControlPanel.add('sign pad', 'glyphicon-edit', 'views/sign-pad-panel.html',
-                      {vals: $scope.vals, params: $scope.params});
+                      {opts: $scope.opts});
     }
 
     return {
@@ -107,33 +92,13 @@ angular.module('swallApp')
           signPad.clear();
         };
 
-        scope.vals = {};
-
-        function updateConfig() {
-          var params = scope.params;
-          var vals = scope.vals = {};
-          for (var i = 0; i < params.length; i++) {
-            var param = params[i];
-            vals[param.name] = parseInt(param.value, 10);
-          }
-          if (vals.min > vals.max) {
-            /* swap value */
-            vals.max = vals.min + vals.max;
-            vals.min = vals.max - vals.min;
-            vals.max = vals.max - vals.min;
-          }
-          var opts = {
-            minWidth: parseFloat(vals.min),
-            maxWidth: parseFloat(vals.max),
-            color: 'rgb(' + vals.red + ',' + vals.green + ',' + vals.blue + ')',
-            velocityFilterWeight: 1 - vals.smooth / 100
-          };
-          signPad.config(opts);
-        }
-
-        for (var i in scope.params) {
-          scope.$watch('params[' + i + '].value', updateConfig);
-        }
+        scope.$watchCollection('opts', function () {
+          signPad.config({
+            minWidth: parseFloat(scope.opts.size),
+            maxWidth: parseFloat(scope.opts.size),
+            color: scope.opts.color
+          });
+        });
       }
     };
   }]);
