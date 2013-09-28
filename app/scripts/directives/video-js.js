@@ -18,6 +18,7 @@ angular.module('swallApp')
           controls: true,
           preload: 'auto',
           poster: opts.poster,
+          loop: true
         });
         vjs.src(opts.src);
 

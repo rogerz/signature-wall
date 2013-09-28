@@ -31,7 +31,7 @@ angular.module('swallApp')
       };
 
       $scope.opts = {
-        color: 'black',
+        color: 'red',
         size: 15
       };
       ControlPanel.add('sign pad', 'glyphicon-edit', 'views/sign-pad-panel.html',
