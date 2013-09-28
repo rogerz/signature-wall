@@ -2,6 +2,9 @@
   <canvas></canvas>
 </div>
 <div id="sign-pad-preview" ng-show="preview.display">
+  <button type="button" class="close pull-right" aria-hidden="true" ng-click="preview.hide()">
+    <span class="glyphicon glyphicon-remove-circle"></span>
+  </button>
   <div class="well">
     <img ng-src="{{preview.src}}" width="100%"></img>
   </div>

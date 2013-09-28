@@ -7,13 +7,14 @@ angular.module('swallApp')
     function controller($scope, ControlPanel, DataStore) {
       // configurable optiosn
       var opts = $scope.opts  = {
-        rows: 16,
-        cols: 9,
-        capacity: 0.25
+        cols: 16,
+        rows: 9,
+        percent: 25
       };
 
-      $scope.$watch(['opts.row', 'opts.cols', 'opts.capacity'], function () {
-        opts.limit = opts.rows * opts.cols * opts.capacity;
+      $scope.$watchCollection('opts', function () {
+        $scope.limit = opts.rows * opts.cols * opts.percent / 100;
+        $scope.genStyle = gridPosFn(opts.rows, opts.cols);
       });
 
       // generate styles from post-it ID
@@ -45,7 +46,6 @@ angular.module('swallApp')
         };
       };
 
-      $scope.genStyle = gridPosFn(opts.rows, opts.cols);
 
       // post-it list manipulation
 

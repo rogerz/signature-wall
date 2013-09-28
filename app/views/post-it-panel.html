@@ -1,4 +1,18 @@
 <ul class="list-group">
+  <li class="list-group-item">
+    <input type="range" min="4" max="16" step="1" ng-model="ctx.opts.cols"></input>
+    <label>{{ctx.opts.cols}} cols</label>
+  </li>
+  <li class="list-group-item">
+    <input type="range" min="3" max="9" step="1" ng-model="ctx.opts.rows"></input>
+    <label>{{ctx.opts.rows}} rows</label>
+  </li>
+  <li class="list-group-item">
+    <input type="range" min="10" max="100" step="5" ng-model="ctx.opts.percent"></input>
+    <label>{{ctx.opts.percent}}%</label>
+  </li>
+</ul>
+<ul class="list-group">
   <li class="list-group-item" ng-repeat="p in ctx.list | limitTo:10">
     <label>{{p.id}}</label>
     <img class="post-it-preview" ng-src="{{p.src}}" height="20px">

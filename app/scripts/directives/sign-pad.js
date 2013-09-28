@@ -61,7 +61,7 @@ angular.module('swallApp')
       link: function (scope, elem) {
         var canvas = elem.find('canvas')[0];
 
-        var delay = 300, q;
+        var delay = 1000, q;
 
         var startFn = function () {
           $timeout.cancel(q);
