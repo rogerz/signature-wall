@@ -1,20 +1,10 @@
 <ul class="list-group">
   <li class="list-group-item">
     <input colorpicker ng-model="ctx.opts.color"></input>
+    <label>{{ctx.opts.color}}</label>
   </li>
   <li class="list-group-item">
     <input type="range" ng-model="ctx.opts.size" min="5" max="25" step="5"></input>
     <label>{{ctx.opts.size}}px</label>
   </li>
 </ul>
-<div>
-  <div style="width:{{ctx.vals.min*2}}px; height:{{ctx.vals.min*2}}px;
-              border-radius:{{ctx.vals.min}}px;
-              background:rgb({{ctx.vals.red}},{{ctx.vals.green}},{{ctx.vals.blue}})">
-  </div>
-  <div style="width:{{ctx.vals.smooth/2}}%"></div>
-  <div style="width:{{ctx.vals.max*2}}px; height:{{ctx.vals.max*2}}px;
-              border-radius:{{ctx.vals.max}}px;
-              background:rgb({{ctx.vals.red}},{{ctx.vals.green}},{{ctx.vals.blue}})">
-  </div>
-</div>
