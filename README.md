@@ -28,3 +28,10 @@ Hover your mouse on the top left corner to show the configuration button
 
 * Display the video source (not editable)
 * Loop or not
+
+## Demo
+
+[http://rogerz.github.io/signature-wall/#/](rogerz.github.io/signature-wall/#/)
+
+* ![Signature](https://f.cloud.github.com/assets/43471/1233139/5b099954-290e-11e3-82ad-bcf71b1a5540.png "Signature")
+* ![Wall](https://f.cloud.github.com/assets/43471/1233140/5f5f2e9c-290e-11e3-97fa-845b814f42f0.png "Wall")
