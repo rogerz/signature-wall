@@ -5,7 +5,7 @@ angular.module('swallApp')
     return {
       templateUrl: 'views/video-bg-tpl.html',
       restrict: 'E',
-      scope: {bg: '='},
+      scope: {},
       link: function postLink(scope, element, attrs) {
         var video = element.find('video')[0];
         var opts = {

@@ -267,6 +267,13 @@ module.exports = function (grunt) {
           src: [
             'fonts/*'
           ]
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>/components/video-js',
+          dest: '<%= yeoman.dist %>/styles',
+          src: [
+            'font/*'
+          ]
         }]
       },
       styles: {
