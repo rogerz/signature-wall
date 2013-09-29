@@ -15,6 +15,6 @@ describe('Directive: videoJs', function () {
   it('should make hidden element visible', inject(function ($compile) {
     element = angular.element('<video-js></video-js>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the videoJs directive');
+    expect(element.text()).toBe('');
   }));
 });
