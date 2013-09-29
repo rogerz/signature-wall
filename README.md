@@ -2,6 +2,8 @@
 
 Handwriting signature on a video background
 
+[![Build Status](https://travis-ci.org/rogerz/signature-wall.png?branch=master)](https://travis-ci.org/rogerz/signature-wall)
+
 ## Usage
 
 1. Open the [demo site](http://rogerz.github.io/signature-wall/#/)
