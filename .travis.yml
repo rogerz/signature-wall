@@ -2,11 +2,9 @@ language: node_js
 node_js:
   - '0.10'
 before_install:
-  - .travis/install_chrome.sh
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+#  - .travis/install_chrome.sh
+#  - export DISPLAY=:99.0
+#  - sh -e /etc/init.d/xvfb start
 before_script:
   - npm install -g bower grunt-cli
   - bower install
-script:
-  - DISPLAY=:99 npm test
