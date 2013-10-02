@@ -11,6 +11,14 @@ Handwriting signature on a video background
 3. Draw signature with your mouse
 4. Wait for a second to submit or erase the signature
 
+### Full screen app on iPad
+
+1. Open the page
+2. Add bookmark to homescreen
+3. Launch the site from homescreen
+
+See [link](http://www.ispringsolutions.com/articles/how-to-make-a-webpage-full-screen-on-an-ipad.html) for details
+
 ## Configuration
 
 Hover your mouse on the top left corner to show the configuration button
