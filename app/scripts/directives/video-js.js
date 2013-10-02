@@ -6,21 +6,22 @@ angular.module('swallApp')
       templateUrl: 'views/video-bg-tpl.html',
       restrict: 'E',
       scope: {},
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
         var video = element.find('video')[0];
         var opts = {
           poster: 'http://video-js.zencoder.com/oceans-clip.png',
           src: 'http://video-js.zencoder.com/oceans-clip.mp4',
-          loop: true,
+          loop: true
         };
         var vjs, controlBar;
 
         function resizeVideo () {
           vjs.dimensions($window.innerWidth, $window.innerHeight);
-        };
+        }
         $window.addEventListener('resize', resizeVideo);
 
         scope.init = function () {
+          /* global videojs: false */
           vjs = videojs(video.id, {
             controls: true,
             preload: 'auto',
@@ -44,7 +45,7 @@ angular.module('swallApp')
               scope.bg = false;
             });
           });
-        }
+        };
 
         scope.opts = opts;
 

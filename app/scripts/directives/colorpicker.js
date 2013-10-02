@@ -6,8 +6,8 @@ angular.module('swallApp')
       require: '?ngModel',
       link: function (scope, elem, attrs, ngModel) {
         var opts = {
-          chooseText: "✓",
-          cancelText: "×"
+          chooseText: '✓',
+          cancelText: '×'
         };
 
         if (!ngModel) {
