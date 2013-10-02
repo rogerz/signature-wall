@@ -4,7 +4,7 @@ angular.module('swallApp')
   .directive('videoBg', ['$window', 'ControlPanel', function ($window, ControlPanel) {
     return {
       templateUrl: 'views/video-bg-tpl.html',
-      restrict: 'E',
+      restrict: 'EA',
       scope: {},
       link: function postLink(scope, element) {
         var video = element.find('video');
@@ -12,7 +12,7 @@ angular.module('swallApp')
           poster: 'http://video-js.zencoder.com/oceans-clip.png',
           src: 'http://video-js.zencoder.com/oceans-clip.mp4',
           loop: true,
-          controls: true,
+          controls: false,
           bgColor: 'black',
           bg: false
         };
@@ -45,14 +45,12 @@ angular.module('swallApp')
           video.attr('src', opts.src);
           video.attr('poster', opts.poster);
           resizeVideo();
-          /* always play in background */
-          video.on('playing', function () {
-            scope.$apply(function () {
-              opts.bg = true;
-            });
-          });
           watchAttrs(['controls', 'loop', 'autoplay']);
         };
+
+        scope.$on('start', function () {
+          video[0].play();
+        });
 
         scope.opts = opts;
 
