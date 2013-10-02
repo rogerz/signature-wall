@@ -46,6 +46,6 @@ div[control-panel] {
   z-index: 10;
 }
 
-.bottom-layer {
+.backmost {
   z-index: -1000;
 }
