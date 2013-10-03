@@ -1,4 +1,4 @@
-<ul class="list-group" ng-init="ctx.pause()">
+<ul class="list-group">
   <li class="list-group-item">
     <label>video: {{ctx.opts.src}}</label>
   </li>
@@ -7,5 +7,9 @@
   </li>
   <li class="list-group-item">
     <input type="checkbox" ng-model="ctx.opts.loop"><label>loop</label>
+  </li>
+  <li class="list-group-item">
+    <label>background color: </label>
+    <input colorpicker="" ng-model="ctx.opts.bgColor">
   </li>
 </ul>
