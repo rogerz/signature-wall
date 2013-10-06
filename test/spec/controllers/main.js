@@ -14,9 +14,13 @@ describe('Controller: MainCtrl', function () {
     MainCtrl = $controller('MainCtrl', {
       $scope: scope
     });
+    spyOn(scope, '$broadcast');
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  it('should emit start', function () {
+    expect(scope.start).toEqual(jasmine.any(Function));
+    scope.start();
+    expect(scope.started).toBe(true);
+    expect(scope.$broadcast).toHaveBeenCalledWith('start');
   });
 });

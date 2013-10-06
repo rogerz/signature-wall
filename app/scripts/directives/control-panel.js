@@ -21,6 +21,7 @@ angular.module('swallApp')
     }
 
     return {
+      restrict: 'E',
       controller: ['$scope', 'ControlPanel', controller],
       templateUrl: 'views/control-panel-tpl.html'
     };
