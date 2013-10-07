@@ -11,8 +11,19 @@ describe('Service: ControlPanel', function () {
     ControlPanel = _ControlPanel_;
   }));
 
-  it('should do something', function () {
-    expect(!!ControlPanel).toBe(true);
+  it('should allow retriving all panels as an array', function () {
+    expect(ControlPanel.all()).toEqual(jasmine.any(Array));
   });
 
+  it('should allow adding panels', function () {
+    ControlPanel.add('panel', 'glyphicon-ok', 'template', {});
+    expect(ControlPanel.all().length).toBe(1);
+  });
+
+  it('should return activated panel', function () {
+    ControlPanel.add('panel', 'glyphicon-ok', 'template', {});
+    var panel = ControlPanel.activate(0);
+    expect(panel).toEqual(jasmine.any(Object));
+    expect(panel.active).toBe(true);
+  });
 });

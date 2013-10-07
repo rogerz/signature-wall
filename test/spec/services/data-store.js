@@ -11,8 +11,17 @@ describe('Service: DataStore', function () {
     DataStore = _DataStore_;
   }));
 
-  it('should do something', function () {
-    expect(!!DataStore).toBe(true);
+  it('should hold a list of sign', function () {
+    expect(DataStore.signList).toEqual(jasmine.any(Array));
   });
-
+  it('should add/remove signature', function () {
+    DataStore.add({});
+    expect(DataStore.signList.length).toBe(1);
+    DataStore.remove(0);
+    expect(DataStore.signList.length).toBe(0);
+  });
+  it('should generate id', function () {
+    DataStore.add({});
+    expect(DataStore.signList[0].id).toBeDefined();
+  });
 });
