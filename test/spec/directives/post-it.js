@@ -1,20 +1,21 @@
 'use strict';
 
-describe('Directive: postIt', function () {
+describe('Directive: postItWall', function () {
 
   // load the directive's module
   beforeEach(module('swallApp'));
-
+  beforeEach(module('views/post-it-wall-tpl.html'));
   var element,
     scope;
 
-  beforeEach(inject(function ($rootScope) {
+  beforeEach(inject(function ($rootScope, $compile) {
+    element = angular.element('<post-it-wall></post-it-wall>');
     scope = $rootScope.$new();
+    element = $compile(element)(scope);
+    scope.$digest();
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<post-it></post-it>');
-    element = $compile(element)(scope);
-    expect(element.text()).toBe('');
+  it('should include post-it', inject(function () {
+    expect(scope.postIt).toBeDefined();
   }));
 });

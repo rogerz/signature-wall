@@ -4,6 +4,7 @@ describe('Directive: signPad', function () {
 
   // load the directive's module
   beforeEach(module('swallApp'));
+  beforeEach(module('views/sign-pad-tpl.html'));
 
   var element,
     scope;
@@ -12,9 +13,11 @@ describe('Directive: signPad', function () {
     scope = $rootScope.$new();
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
+  it('should include a hidden preview pad', inject(function ($compile, $timeout) {
     element = angular.element('<sign-pad></sign-pad>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('');
+    scope.$digest();
+    $timeout.flush();
+    expect(element.find('#sign-pad-preview').hasClass('ng-hide')).toBe(true);
   }));
 });
